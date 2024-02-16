@@ -1,0 +1,30 @@
+CREATE TABLE heart_attack_risk (
+    Patient_ID VARCHAR(50) NOT NULL, 
+    Age INT, 
+    Sex VARCHAR(10), 
+    Cholesterol INT, 
+    Blood_Pressure VARCHAR(10),
+    Heart_Rate INT, 
+    Diabetes INT, 
+    Family_History INT, 
+    Smoking INT, 
+    Obesity INT,
+    Alcohol_Consumption INT, 
+    Exercise_Hours_Per_Week FLOAT, 
+    Diet VARCHAR(50),
+    Previous_Heart_Problems INT, 
+    Medication_Use INT, 
+    Stress_Level INT,
+    Sedentary_Hours_Per_Day FLOAT,
+    Income INT,
+    BMI FLOAT,
+    Triglycerides INT,
+    Physical_Activity_Days_Per_Week INT,
+    Sleep_Hours_Per_Day INT,
+    Country VARCHAR(50),
+    Continent VARCHAR(50),
+    Hemisphere VARCHAR(50),
+    Heart_Attack_Risk INT
+);
+
+SELECT * FROM heart_attack_risk;
