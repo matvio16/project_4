@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Attack Risk Questionnaire</title>
+    <style>
+        #results { padding: 20px; background-color: #f0f0f0; margin-top: 20px; display: none; }
+    </style>
+</head>
+<body>
+    <h2>Heart Attack Risk Questionnaire</h2>
+    <form id="questionnaireForm">
+        <div>
+            <p>1. Do you have diabetes?</p>
+            <label><input type="radio" name="diabetes" value="Yes"> Yes</label>
+            <label><input type="radio" name="diabetes" value="No"> No</label>
+        </div>
+        <div>
+            <p>2. Do you have a family history of heart disease?</p>
+            <label><input type="radio" name="family_history" value="Yes"> Yes</label>
+            <label><input type="radio" name="family_history" value="No"> No</label>
+        </div>
+        <div>
+            <p>3. Are you a smoker?</p>
+            <label><input type="radio" name="smoking" value="Yes"> Yes</label>
+            <label><input type="radio" name="smoking" value="No"> No</label>
+        </div>
+        <div>
+            <p>4. Are you considered obese based on your BMI?</p>
+            <label><input type="radio" name="obesity" value="Yes"> Yes</label>
+            <label><input type="radio" name="obesity" value="No"> No</label>
+        </div>
+        <div>
+            <p>5. Do you consume alcohol regularly?</p>
+            <label><input type="radio" name="alcohol" value="Yes"> Yes</label>
+            <label><input type="radio" name="alcohol" value="No"> No</label>
+        </div>
+        <div>
+            <p>6. Do you exercise less than 2 hours per week?</p>
+            <label><input type="radio" name="exercise" value="Yes"> Yes</label>
+            <label><input type="radio" name="exercise" value="No"> No</label>
+        </div>
+        <div>
+            <p>7. Are you currently on any long-term medication?</p>
+            <label><input type="radio" name="medication" value="Yes"> Yes</label>
+            <label><input type="radio" name="medication" value="No"> No</label>
+        </div>
+        <div>
+            <p>8. Do you frequently experience stress?</p>
+            <label><input type="radio" name="stress" value="Yes"> Yes</label>
+            <label><input type="radio" name="stress" value="No"> No</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById("questionnaireForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevent the form from submitting traditionally
+            const formData = new FormData(this);
+            let score = 0;
+
+            for (let value of formData.values()) {
+                if (value === "Yes") score++;
+            }
+
+            const probability = score * 12.5;
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = `<p>Based on your responses, your estimated probability of having a heart attack is ${probability}%. Please consult a healthcare provider for a comprehensive assessment.</p>`;
+            resultsDiv.style.display = 'block'; // Show the results
+
+            // Optionally, reset the form for the next user
+            this.reset();
+        };
+    </script>
+</body>
+</html>
+
