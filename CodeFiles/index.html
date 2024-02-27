@@ -76,6 +76,23 @@
         <input type="number" class="form-control" id="stressLevel" placeholder="Enter your stress level" min="1" max="10">
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="alcohol">Consume alcohol regularly? *</label>
+        <select id="alcohol" class="form-control" required>
+          <option value="" disabled selected>Select Y/N</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="excercise">Excercise hours per week? *</label>
+        <input type="number" class="form-control" id="totalExcercise" placeholder="Enter total hours" min="0" max="20" required>     </div>
+      <div class="form-group col-md-3">
+        <label for="sleep">Sleep hours per day? *</label>
+        <input type="number" class="form-control" id="totalSleep" placeholder="Enter total hours" min="4" max="10" required>
+      </div>
+    </div>
     <!-- <div class="form-group">
       <label>History of Diabetes? *</label>
       <div class="form-check">
@@ -134,12 +151,16 @@
   function storeFormData() {
     // Get form data
     var formData = {
-      gender: document.getElementById('gender').value,
-      currentAge: document.getElementById('currentAge').value,
-      totalCholesterol: document.getElementById('totalCholesterol').value,
-      diabetes: document.getElementById('diabetes').value,
-      smoker: document.getElementById('smoker').value,
-      stressLevel: document.getElementById('stressLevel').value
+      Sex: document.getElementById('gender').value,
+      Age: document.getElementById('currentAge').value,
+      Cholesterol: document.getElementById('totalCholesterol').value,
+      Diabetes: document.getElementById('diabetes').value,
+      Smoking: document.getElementById('smoker').value,
+      "Stress Level": document.getElementById('stressLevel').value,
+      "Alcohol Consumption": document.getElementById('alcohol').value,
+      "Excercise Hours Per Week": document.getElementById('totalExcercise').value,
+      "Sleep Hours Per Day": document.getElementById('totalSleep').value
+      
     };
 
     // Push form data into array
