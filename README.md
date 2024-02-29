@@ -2,6 +2,12 @@
 
 This Jupyter Notebook presents the evaluation of a logistic regression model trained on a dataset presumably related to predicting the risk of heart attack. The process involves data loading, preprocessing, model training, and evaluation, utilizing the `scikit-learn` package and `pandas` for data manipulation.
 
+## Dataset Source
+
+The dataset used for this project is sourced from Kaggle and the specific dataset for heart attack risk prediction can be found at the following link:
+
+[Kaggle Dataset for Heart Attack Risk Prediction](https://www.kaggle.com/datasets/iamsouravbanerjee/heart-attack-prediction-dataset/data])
+
 ## Process Overview
 
 1. **Import Libraries**: Essential libraries are imported, including various `scikit-learn` modules for model training and evaluation, and `pandas` for data handling.
@@ -116,3 +122,12 @@ Please note that while our app provides valuable insights, it is not a substitut
 
 ## Next Steps:
 Now, let's delve into how our model makes these predictions.
+
+
+## Contributors:
+
+- Lisa Lonstein
+- Diya Patel
+- Rafael Soriano
+- Matthew Viola
+- Ron Whiting
