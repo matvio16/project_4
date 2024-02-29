@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Attack Risk Form</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+          }
+          h1, h2, h3 {
+              color: navy;
+          }
+          p {
+              color: #555;
+          }
+          img {
+              max-width: 25%;
+              height: auto;
+              float: right;
+              margin-left: 20px;
+          }
+          .buttonstyle {
+              background-color: lightslategray;
+              border-color: lightslategray;
+              color: white;
+          }
+      </style>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body style="background-color:#f5f5f5;">
+  <h1>Welcome to the Heart Attack Risk Estimator!</h1>
+      <img src="https://healthjade.net/wp-content/uploads/2017/08/heart-attack.jpg" alt="Heart Attack Image">
+      <p>Please fill out the following form to see if you're at risk of getting a heart attack.</p>
+<div class="container mt-5">
+  <h2>Heart Attack Risk Form</h2>
+  <form id="riskForm">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="gender">Gender *</label>
+        <select id="gender" class="form-control" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="currentAge">Current Age *</label>
+        <input type="number" class="form-control" id="currentAge" placeholder="Enter age" min="20" max="80" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="totalCholesterol">Total Cholesterol (mg/dL) *</label>
+        <input type="number" class="form-control" id="totalCholesterol" placeholder="Enter total cholesterol" min="120" max="300" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="diabetes">History of Diabetes? *</label>
+        <select id="diabetes" class="form-control" required>
+          <option value="" disabled selected>Select Y/N</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="smoker">Are you a current smoker? *</label>
+        <select id="smoker" class="form-control" required>
+          <option value="" disabled selected>Select Y/N</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="stressLevel">Rate your stress level. *</label>
+        <input type="number" class="form-control" id="stressLevel" placeholder="Enter your stress level" min="1" max="10">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="alcohol">Consume alcohol regularly? *</label>
+        <select id="alcohol" class="form-control" required>
+          <option value="" disabled selected>Select Y/N</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="excercise">Exercise hours per week? *</label>
+        <input type="number" class="form-control" id="totalExcercise" placeholder="Enter total hours" min="0" max="20" required>     </div>
+      <div class="form-group col-md-3">
+        <label for="sleep">Sleep hours per day? *</label>
+        <input type="number" class="form-control" id="totalSleep" placeholder="Enter total hours" min="4" max="10" required>
+      </div>
+    </div>
+    <button type="submit" class="buttonstyle" onclick="submitForm(event)">Submit</button>
+  </form>
+  <div id="message" style="display: none;"></div>
+</div>
+<h3> <strong> DISCLAIMER </strong> </h3>
+      <p> The heart attack risk calculator provided by our app evaluates individualized data 
+        to estimate future risks of heart attack. This tool is intended for informational purposes only and should not replace professional medical advice or diagnosis. 
+        It is designed to assist users in understanding potential cardiovascular risks and exploring preventive measures. </p>
+<script>
+
+  function runPyScript(input){
+        var prediction = $.ajax({
+            type: "POST",
+            url: "http://localhost:5000/askModel",
+            async: false,
+            contentType: "application/json",
+            data: input
+        });
+
+        return prediction.responseText;
+  }
+
+  var formDataList = []; // Initialize empty array to store form data
+
+  function storeFormData() {
+    // Get form data
+    var formData = {
+      "Sex": document.getElementById('gender').value,
+      "Age": document.getElementById('currentAge').value,
+      "Cholesterol": document.getElementById('totalCholesterol').value,
+      "Heart Rate": 70,
+      "Diabetes": document.getElementById('diabetes').value,
+      "Family History": 0,
+      "Smoking": document.getElementById('smoker').value,
+      "Obesity": 0,
+      "Stress Level": document.getElementById('stressLevel').value,
+      "Alcohol Consumption": document.getElementById('alcohol').value,
+      "Exercise Hours Per Week": document.getElementById('totalExcercise').value,
+      "Sleep Hours Per Day": document.getElementById('totalSleep').value,
+      "Diet": "Average",
+      "Previous Heart Problems": 0,
+      "Medication Use": 0,
+      "Sedentary Hours Per Day": 3,
+      "Income": 60000,
+      "BMI": 20,
+      "Triglycerides": 150,
+      "Physical Activity Days Per Week": 3,
+      "Country": "United States",
+      "Continent": "North America",
+      "Hemisphere": "Northern Hemisphere"
+      
+    };
+
+    // Push form data into array
+    formDataList.push(formData);
+    var formJson = JSON.stringify(formData);
+    console.log('Form json stored:', formJson);
+    result = runPyScript(formJson);
+    console.log('Got back ' + result);
+
+    // Log a message to indicate that the function is called
+    console.log('Form data stored:', formDataList);
+  }
+
+  function submitForm(event) {
+    // Prevent default form submission
+    event.preventDefault();
+
+    // Call storeFormData() to capture form data
+    storeFormData();
+
+    // // Reset the form
+    document.getElementById("riskForm").reset();
+
+   // Display a message after form submission based on the result
+   var messageDiv = document.getElementById("message");
+    if (result === "0") {
+        messageDiv.innerHTML = "<p>You are not at risk of a heart attack. However, please continue to prioritize your cardiovascular health.</p>";
+    } else if (result === "1") {
+        messageDiv.innerHTML = "<p>You are at risk of a heart attack. Please consult a healthcare professional for further evaluation and advice.</p>";
+    } else {
+        messageDiv.innerHTML = "<p>An error occurred while processing your request. Please try again later.</p>";
+    }
+    messageDiv.style.display = "block";
+
+    // Hide the message after a certain duration (e.g., 5 seconds)
+    setTimeout(function(){
+        messageDiv.style.display = "none";
+    }, 10000); // 10000 milliseconds = 10 seconds
+  }
+
+</script>
+</body>
+</html>
