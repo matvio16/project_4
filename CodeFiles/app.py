@@ -14,12 +14,10 @@ def askModel():
     if request.method == 'POST':
         
         datafromjs = request.get_json()
-        print(datafromjs)
         X_test = pd.DataFrame(datafromjs, index=[0])
 
         model = joblib.load("rf_model.pkl")
         prediction = str(model.predict(X_test)[0])
-        print(prediction)
         resp = make_response('{"response": '+prediction+'}')
         resp.headers['Content-Type'] = "application/json"
         return prediction
