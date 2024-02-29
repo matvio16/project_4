@@ -122,7 +122,7 @@ Please note that while our app provides valuable insights, it is not a substitut
 
 ## Next Steps:
 Now, let's delve into how our model makes these predictions.
-
+The user will fill in all of the fields on screen. The data will then be passed to the model using ajax within JavaScript via a Flask API. The model will then use the inputted data to predict whether or not the patient is at risk of a heart attack. It will return 1 if the patient is at risk or 0 if the patient is not at risk. Using the results of the model, a popup will appear on the screen notifying the patient if they are at risk or not.
 
 ## Contributors:
 
