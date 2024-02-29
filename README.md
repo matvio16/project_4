@@ -7,14 +7,15 @@ Welcome to our Heart Attack Risk Assessment App! Our goal is to empower users to
 ## Features:
 * **Customizable Risk Form:** Our app includes a comprehensive form covering various factors such as gender, age, cholesterol levels, diabetes history, smoking habits, stress levels, alcohol consumption, exercise, and sleep patterns.
 
-![Form](Images/Form.png)
+  ![Form](Images/Form.png)
 
 * **Transparency and Accountability:** We value transparency and have included a disclaimer emphasizing that our tool serves as an informative guide and should not replace professional medical advice.
 
 * **Data Processing:** Upon form submission, JavaScript functions handle data processing. Information is securely captured and stored in an array for diagnostic purposes.
-![Java](Images/Java%20Function.png)
 
-![FormArray](Images/FormArray.png)
+  ![Java](Images/Java%20Function.png)
+
+  ![FormArray](Images/FormArray.png)
 
 * **Machine Learning Prediction:** Data undergoes analysis through our machine learning model, enabling us to predict potential heart attack risks with enhanced precision.
 
